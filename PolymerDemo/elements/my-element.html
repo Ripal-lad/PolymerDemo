@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    
+    <link rel="import" href="/components/polymer/polymer.html">
+    <link rel="import" href="/components/core-ajax/core-ajax.html">
+    
+    <polymer-element name="my-element">
+            <template>
+                <form name="Myform">
+                    <h1> Employee Detail </h1>
+                    Name : <input id="nameInput" value="{{name}}" placeholder="Enter name..."></br>
+
+                    Select Age : <input id="ageInput" type="range" value="{{age}}"></br>
+                    Your Favourite Colour <input id="nameInput" value="{{Colorname}}" style="color: {{Colorname}}" placeholder="Enter name..."></br>
+
+                    <button type="submit" on-click="{{submit}}">Submit</button>
+                    <button type="reset">Cancel</button>
+                    <br /> <br /> <br />
+                    <h3>Hello, my Name is {{name}}</h3>
+                    <span>
+                        This is my demo app to learn polymer.<br />
+
+
+                        <span>My age is {{age}}</span><br />
+                        <span style="color:{{Colorname}}">My favourite colour is {{Colorname}}</span>.<br />
+                </form>
+        </template>
+        <script>
+            Polymer({
+                created: function() {console.log("created") },
+                ready: function () { console.log(" ready") },
+                attached: function () { console.log(" attached") },
+                domReady: function () { console.log("domReady") },
+                detached: function () { console.log("detached") },
+                attributeChanged: function(attrName, oldVal, newVal) {
+                    //var newVal = this.getAttribute(attrName);
+                    console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
+                },
+               
+                //ready: function () {
+                //    alert("ready");
+                //    this.$.el.textContent = this.owner +
+                //                            " is ready!";
+                //},
+             
+                nameChanged: function () {
+                    if (this.name) {
+                      
+                        // Ensure name is capitalized
+                        this.name = this.name[0].toUpperCase() +
+                                    this.name.slice(1);
+                    }
+                },
+                submit: function () {
+                    alert("Details added successfully !!");
+                    
+                },
+               
+              });
+        </script>
+    </polymer-element>  
+    <polymer-element name="polymer-cooler" extends="my-element">
+        <template>
+            <!-- A shadow element render's the extended
+                 element's shadow dom here. -->
+           <h3> The below data is to be printed because it extends previous the element. </h3>
+            <shadow></shadow>
+        </template>
+        <script>
+            Polymer();
+        </script>
+    </polymer-element>
+    
+</body>
+</html>
